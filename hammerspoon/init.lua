@@ -10,10 +10,10 @@ local function runScript()
     end
     local source = file:read("*a")
     file:close()
-    local ok, err = hs.osascript.applescript(source)
+    local ok, err, _ = hs.osascript.applescript(source)
     if ok then
         hs.notify.new({title="sc-hax", informativeText="Connection established!"}):send()
-    else
+    elseif err ~= nil then
         hs.notify.new({title="sc-hax", informativeText="Error: " .. tostring(err)}):send()
     end
 end
